@@ -13760,18 +13760,45 @@ body {
 
 body {
     background-image: url("/images/wallpaper.webp");
-    background-size: cover;
+    background-size: 100% 100%;
     background-repeat: no-repeat;
+    background-position: center;
+    animation: zoomInOut 100s infinite;
 }
 
+
 #bottom-navigation {
-    background: rgba(83, 83, 83, 0.4);
+    background: rgba(181, 181, 181, 0.4);
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
 }
 
+div[modal-backdrop] {
+    display: none;
+}
+
 .iframe-container iframe {
-    height:calc(100vh - 100px);
+    height:555px;
     width:100%;
     border: none;
+}
+
+@keyframes zoomInOut {
+    0% {
+        background-size: 100% 100%;
+    }
+    50% {
+        background-size: 110% 110%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
+
+.in-out-zoom {
+    transition: transform 0.7s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1); /* Scale the button up to 110% */
 }
