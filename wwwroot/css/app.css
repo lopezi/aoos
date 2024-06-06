@@ -13756,3 +13756,22 @@ body {
         padding-top: 264px;
     }
 }
+
+
+body {
+    background-image: url("/images/wallpaper.webp");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#bottom-navigation {
+    background: rgba(83, 83, 83, 0.4);
+    backdrop-filter: blur(50px);
+    -webkit-backdrop-filter: blur(50px);
+}
+
+.iframe-container iframe {
+    height:calc(100vh - 100px);
+    width:100%;
+    border: none;
+}
