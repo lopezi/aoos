@@ -7,6 +7,9 @@ namespace FlowbiteBlazorWasmStarter.Pages
         int _step = 0;
         string? _jwk = null;
         string? _address = null;
+        string? _resultId = null;
+        string? _resultMsg = null;
+        string? _tokenResult = null;
 
         public void Step(int step)
         {
@@ -38,7 +41,46 @@ namespace FlowbiteBlazorWasmStarter.Pages
                 return;
             }
 
-            var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
+            //TODO: Send to process
+            _resultId = "TODO";
+
+        }
+
+        public async Task CheckResult()
+        {
+            if (_resultId == null)
+            {
+                return;
+            }
+
+            //TODO: Send to process
+            _step = 3;
+
+            _resultMsg = "TODO";
+
+        }
+
+        public async Task CreateToken()
+        {
+            if (_resultId == null)
+            {
+                return;
+            }
+
+            //TODO: Send to process
+            _tokenResult = "tokenId";
+
+        }
+
+        public async Task CheckBalance()
+        {
+            _step = 4;
+
+        }
+
+        public async Task GoToOS()
+        {
+            NavigationManager.NavigateTo("/os");
 
         }
     }

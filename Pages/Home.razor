@@ -1,5 +1,6 @@
 ﻿@page "/"
 @inject ArweaveService ArweaveService
+@inject NavigationManager NavigationManager
 
 <PageTitle>Home</PageTitle>
 @if (_step == 0)
@@ -27,7 +28,7 @@
     }
 }
 
-@if(_step == 2)
+@if (_step == 2)
 {
     <p>
         It’s easy to communicate with processes running on ao
@@ -38,4 +39,49 @@
     <input type="text" name="name" />
     <button @onclick="TalkToMorpheus">Talk to Morpheus</button>
 
+
+    @if (_resultId != null)
+    {
+        <p>Morpheus has an answer, it's message id is: @_resultId</p>
+        <button @onclick="CheckResult">Check the content of @_resultId</button>
+
+    }
+
+}
+
+@if (_step == 3)
+{
+    <p>Getting result...</p>
+
+    @if(_resultMsg != null)
+    {
+        <p>Result:</p>
+        <p>@_resultMsg</p>
+
+        <p>Creating tokens on ao is easy. Press the button to create your own token.</p>
+
+        <button @onclick="CreateToken">Create token</button>
+
+        @if(_tokenResult != null)
+        {
+            <p>Your token is created with id: @_tokenResult</p>
+
+        <button @onclick="CheckBalance">Check the token balance</button>
+
+        }
+
+    }
+}
+
+@if(_step == 4)
+{
+    <p>Balances</p>
+
+    <p>@_address</p>
+    <p>1 token</p>
+
+    <p>Great! You've made the first basic steps usig the hyper parallel computer. Easy right?</p>
+
+    <p>Continue your next steps...</p>
+    <button @onclick="GoToOS">Boot up ao OS</button>
 }
