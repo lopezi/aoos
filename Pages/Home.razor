@@ -1,11 +1,28 @@
 ﻿@page "/"
+@inject ArweaveService ArweaveService
 
 <PageTitle>Home</PageTitle>
+@if (_step == 0)
+{
 
-<h1 class="text-4xl font-bold">Welcome to ao</h1>
+    <h1 class="text-4xl font-bold">Welcome to ao</h1>
 
-<p>The hyper parallel computer running on Arweave.</p>
+    <p>The hyper parallel computer running on Arweave.</p>
 
-<p>Are you ready for an adventure?</p>
+    <p>Are you ready for an adventure?</p>
 
-<button @onclick="GenerateWallet">Follow the white rabbit</button>
+    <button @onclick="() => Step(1)">Follow the white rabbit</button>
+
+}
+
+@if (_step == 1)
+{
+    <button @onclick="GenerateWallet">Generate a wallet</button>
+
+    @if (!string.IsNullOrEmpty(_jwk))
+    {
+        <p>Wallet created</p>
+        <p>Address: @_address</p>
+        <button @onclick="DownloadWallet">Backup your wallet</button>
+    }
+}
