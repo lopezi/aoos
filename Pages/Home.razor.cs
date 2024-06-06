@@ -1,4 +1,6 @@
-﻿namespace aoos.Pages
+﻿using ArweaveBlazor;
+
+namespace aoos.Pages
 {
     public partial class Home
     {
@@ -19,8 +21,12 @@
 
         public async Task DownloadWallet()
         {
-            _jwk = await ArweaveService.GenerateWallet();
-            _address = await ArweaveService.GetAddress(_jwk);
+            if (_jwk == null)
+            {
+                return;
+            }
+
+            var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
         }
     }
 }
