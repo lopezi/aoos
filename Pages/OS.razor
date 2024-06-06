@@ -57,6 +57,44 @@
     </div>
 </div>
 
+<!-- Bark Modal Content -->
+<div id="astro-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
+        <!-- Modal content -->
+       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+           <!-- Modal header -->
+           <div class="flex flex-row items-start p-1 border-b rounded-t dark:border-gray-600">
+               <button type="button" data-modal-hide="astro-modal" class="in-out-zoom text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                   <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
+               </button>
+           </div>
+           <!-- AOWW Modal body -->
+           <div class="iframe-container">
+               <iframe src="https://www.astrousd.com/"></iframe>
+           </div>
+       </div>
+    </div>
+</div>
+
+
+<!-- Gather Modal Content -->
+<div id="gather-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
+        <!-- Modal content -->
+       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+           <!-- Modal header -->
+           <div class="flex flex-row items-start p-1 border-b rounded-t dark:border-gray-600">
+               <button type="button" data-modal-hide="gather-modal" class="in-out-zoom text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                   <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
+               </button>
+           </div>
+           <!-- Gather Modal body -->
+           <div class="iframe-container">
+               <iframe src="https://gatherchat.arweave.dev"></iframe>
+           </div>
+       </div>
+    </div>
+</div>
 <!-- Notes Modal Content -->
 <div id="notes-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
     <div class="relative w-full max-w-4xl max-h-full">
@@ -185,6 +223,16 @@
                 <img class="object-cover rounded-xl h-12 w-12" src="/images/bark.png" />
             </div>
         </button>
+        <button data-modal-target="astro-modal" data-modal-toggle="astro-modal"  class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+            <div class="h-12 w-12 bg-gray-500 rounded-xl">
+                <img class="object-cover rounded-xl h-12 w-12" src="/images/astro.png" />
+            </div>
+        </button>
+        <button data-modal-target="gather-modal" data-modal-toggle="gather-modal"  class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                    <div class="h-12 w-12 bg-gray-500 rounded-xl">
+                        <img class="object-cover rounded-xl h-12 w-12" src="/images/gather.png" />
+                    </div>
+                </button>
         <button data-modal-target="notes-modal" data-modal-toggle="notes-modal"  class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
             <div class="h-12 w-12 bg-gray-500 rounded-xl">
                 <img class="object-cover rounded-xl h-12 w-12" src="/images/notes.png" />
