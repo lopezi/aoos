@@ -3,46 +3,68 @@
 
 
 <PageTitle>ao OS</PageTitle>
-
-<h1 class="text-4xl font-bold">ao OS</h1>
-
 <!-- component -->
 <div class="w-full h-screen">
 
 
-
-<!-- AOWW Modal Content -->
-<div id="default-modal" data-backdrop="false" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
+<div id="aoww-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <!-- Modal header -->
-            <div class="flex items-start p-1 border-b rounded-t dark:border-gray-600">
-                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
-                    <span class="flex w-3 h-3 me-3 bg-red-500 rounded-full"></span>
-                </button>
-            </div>
-            <!-- AOWW Modal body -->
-            <div class="iframe-container">
-                <iframe src="https://www.aoww.net"></iframe>
-            </div>
-        </div>
+       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+           <!-- Modal header -->
+           <div class="flex flex-row items-start p-1 border-b rounded-t dark:border-gray-600">
+               <button type="button" data-modal-hide="aoww-modal" class="in-out-zoom text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                   <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
+               </button>
+           </div>
+           <!-- AOWW Modal body -->
+           <div class="iframe-container">
+               <iframe src="https://aoww.net/wallet/j7XsUSfBWqkBX35uJdx2nDXOXcpLPLj8ltLnFvvMQHg"></iframe>
+           </div>
+       </div>
     </div>
 </div>
 
+
+<!-- Bark Modal Content -->
+<div id="bark-modal" tabindex="-1" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative w-full max-w-4xl max-h-full">
+        <!-- Modal content -->
+       <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+           <!-- Modal header -->
+           <div class="flex flex-row items-start p-1 border-b rounded-t dark:border-gray-600">
+               <button type="button" data-modal-hide="bark-modal" class="in-out-zoom text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                   <span class="flex w-3 h-3 bg-red-500 rounded-full"></span>
+               </button>
+           </div>
+           <!-- AOWW Modal body -->
+           <div class="iframe-container">
+               <iframe src="https://bark.arweave.dev/"></iframe>
+           </div>
+       </div>
+    </div>
+</div>
+
+
 	<!-- <section id="bottom-navigation" class="md:hidden block fixed inset-x-0 bottom-0 z-10 bg-white shadow"> // if shown only tablet/mobile-->
-	<section id="bottom-navigation" class="flex justify-center fixed inset-x-0 bottom-0 z-10 shadow mx-12 mb-2 rounded-xl">
+	<section id="bottom-navigation" class="flex justify-center fixed inset-x-0 bottom-0 z-10 shadow mx-24 mb-2 rounded-xl">
 		<div id="tabs" class="flex justify-center">
-			<button data-modal-target="default-modal" data-modal-toggle="default-modal" class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+			<button data-modal-target="aoww-modal" data-modal-toggle="aoww-modal" class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
 				<div class="h-12 w-12 bg-gray-500 rounded-xl">
 				    <img class="object-cover rounded-xl h-12 w-12" src="/images/aoww.jpeg" />
 				</div>
 			</button>
 
-			<a href="#" class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
-				<div class="h-10 w-10 bg-gray-500 rounded-xl">
+			<button class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <div class="h-12 w-12 bg-gray-500 rounded-xl">
+                    <img class="object-cover rounded-xl h-12 w-12" src="/images/odysee.png" />
                 </div>
-			</a>
+            </button>
+            <button data-modal-target="bark-modal" data-modal-toggle="bark-modal"  class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
+                <div class="h-12 w-12 bg-gray-500 rounded-xl">
+                    <img class="object-cover rounded-xl h-12 w-12" src="/images/bark.png" />
+                </div>
+            </button>
 			<a href="#" class="w-full mx-1 focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1">
 				<div class="h-10 w-10 bg-gray-500 rounded-xl">
 
