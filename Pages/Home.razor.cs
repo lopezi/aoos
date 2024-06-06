@@ -27,6 +27,8 @@ namespace FlowbiteBlazorWasmStarter.Pages
         {
             _jwk = await ArweaveService.GenerateWallet();
             _address = await ArweaveService.GetAddress(_jwk);
+
+            MemValues.Address = _address;
         }
 
         public async Task DownloadWallet()
@@ -111,10 +113,8 @@ namespace FlowbiteBlazorWasmStarter.Pages
 
             _tokenResult = _newTokenId;
 
-        }
+            MemValues.Token = _newTokenId;
 
-        public async Task CheckBalance()
-        {
             _step = 4;
 
         }

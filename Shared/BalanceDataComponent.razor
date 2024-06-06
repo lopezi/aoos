@@ -1,0 +1,23 @@
+﻿@using ArweaveAO
+@using ArweaveAO.Models
+@using ArweaveAO.Models.Token
+@using Microsoft.Extensions.Options
+@inject HttpClient httpClient
+<div>
+    @TokenData?.Name | @BalanceHelper.FormatBalance(Balance?.Balance, TokenData?.Denomination ?? 0)
+</div>
+
+@code{
+    TokenData? TokenData = null;
+    BalanceData? Balance = null;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        TokenClient client = new TokenClient(Options.Create(new ArweaveConfig()), httpClient);
+
+        TokenData = await client.GetTokenMetaData(MemValues.Token);
+        Balance = await client.GetBalance(MemValues.Token, MemValues.Address);
+
+        await base.OnParametersSetAsync();
+    }
+}
