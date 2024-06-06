@@ -84,7 +84,7 @@
     <section class="bg-white dark:bg-gray-900">
         <div class="py-8 px-4 mx-auto max-w-screen-xl text-center justify-center align-center lg:py-16">
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Let's get you started</h1>
-            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Your brand new wallet is cooking</p>
+            <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Your brand new wallet is cooking hot</p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                 @if (string.IsNullOrEmpty(_jwk))
                     {
@@ -168,13 +168,13 @@
 
     <section class="bg-white dark:bg-gray-900">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-center justify-center align-center lg:py-16">
-                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Call Morpheus</h1>
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Better call Morpheus</h1>
                 <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">It’s easy to communicate with processes running on ao</p>
                 <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     @if (_resultId == null)
                         {
                             <div class="flex flex-col justify-center items-center">
-                                <input @bind="inputName" placeholder="Enter your name" type="text" id="first_name" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="My name" required />
+                                <input @bind="inputName" placeholder="Enter your name" type="text" id="first_name" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tell your nickname" required />
 
                                 <a href="#" @onclick="TalkToMorpheus" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                                     Send Morpheus a message
@@ -185,7 +185,7 @@
                      @if (_resultId != null)
                         {
                         <div class="flex flex-col justify-center items-center">
-                            <p>Morpheus has an answer for you, the message id containing the answer is: @_resultId</p>
+                            <p>Morpheus has a challenge for you, checkout the message id:<br/> <span class="text-violet-600">@_resultId</span></p>
                             <button @onclick="CheckResult" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Check the message content</button>
                         </div>
 
@@ -253,37 +253,163 @@
 
 @if (_step == 3)
 {
-    <p>Getting result...</p>
+    <section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center justify-center align-center lg:py-16">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Morpheus says:</h1>
+                <p class="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">@_resultMsg</p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                     @if(_resultMsg != null)
+                        {
+                        @if(_tokenResult == null)
+                                                    {
+                            <div class="flex flex-col justify-center items-center">
+                                <p>Press the button to create your own token. Just like that.</p>
+                                <button @onclick="CreateToken" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Create my token</button>
+                            </div>
+                            }
 
-    @if(_resultMsg != null)
-    {
-        <p>Result:</p>
-        <p>@_resultMsg</p>
+                            @if(_tokenResult != null)
+                            {
+                            <div class="flex flex-col justify-center items-center">
+                                <p>Your token is created with id: @_tokenResult</p>
+                                <button @onclick="CheckBalance" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Check the token balance</button>
+                            </div>
+                            }
 
-        <p>Creating tokens on ao is easy. Press the button to create your own token.</p>
+                        }
+                </div>
+            </div>
 
-        <button @onclick="CreateToken">Create token</button>
+            <ul class="matrix">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+        </section>
 
-        @if(_tokenResult != null)
-        {
-            <p>Your token is created with id: @_tokenResult</p>
 
-        <button @onclick="CheckBalance">Check the token balance</button>
-
-        }
-
-    }
 }
 
 @if(_step == 4)
 {
-    <p>Balances</p>
 
-    <p>@_address</p>
-    <p>1 token</p>
+<section class="bg-white dark:bg-gray-900">
+            <div class="py-8 px-4 mx-auto max-w-screen-xl text-center justify-center align-center lg:py-16">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Ready. Set. Go!!!</h1>
+                <p class="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Arriving here is just the beginning; your true journey now unfolds.</p>
+                <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
+                    <div class="flex flex-col justify-center items-center">
+                                <p>Balances</p>
+                                 <p>@_address</p>
+                                 <p>1 token</p>
 
-    <p>Great! You've made the first basic steps usig the hyper parallel computer. Easy right?</p>
+                                 <p>Great! You're all setup for hyper parallel computer. Easy right?</p>
 
-    <p>Continue your next steps...</p>
-    <button @onclick="GoToOS">Boot up ao OS</button>
+                                 <p>Continue your next steps...</p>
+                                 <button @onclick="GoToOS" class="mt-4 inline-flex justify-center items-center py-16 px-16 text-base font-medium text-center text-white rounded-full bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Boot up ao OS</button>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="matrix">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+        </section>
+
 }
