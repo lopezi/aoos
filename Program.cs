@@ -14,3 +14,10 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddArweaveBlazor();
 
 await builder.Build().RunAsync();
+
+
+public static class MemValues
+{
+    public static string Address { get; set; } = "j7XsUSfBWqkBX35uJdx2nDXOXcpLPLj8ltLnFvvMQHg";
+    public static string Token { get; set; } = "DK6-PR-ZFsyrHCqjH7kxJxlGtOYFLG-RXiPyfYVFCjw";
+}

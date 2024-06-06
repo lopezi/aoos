@@ -274,13 +274,7 @@
                             </div>
                             }
 
-                            @if(_tokenResult != null)
-                            {
-                            <div class="flex flex-col justify-center items-center">
-                                <p>Your token is created with id: @_tokenResult</p>
-                                <button @onclick="CheckBalance" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Check the token balance</button>
-                            </div>
-                            }
+                           
 
                         }
                 </div>
@@ -352,9 +346,14 @@
                 <p class="mb-8 text-lg font-normal text-gray-600 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Arriving here is just the beginning; your true journey now unfolds.</p>
                 <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                     <div class="flex flex-col justify-center items-center">
-                                <p>Balances</p>
-                                 <p>@_address</p>
-                                 <p>1 token</p>
+                                 @if(_tokenResult != null)
+                            {
+                            <div class="flex flex-col justify-center items-center">
+                                <p>Your token is created with id: @_tokenResult</p>
+                            </div>
+                            }
+                                <br>
+                                <br />
 
                                  <p>Great! You're all setup for hyper parallel computer. Easy right?</p>
 
