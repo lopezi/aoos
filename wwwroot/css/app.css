@@ -13760,7 +13760,7 @@ body {
 
 body {
     background-image: url("/images/wallpaper.webp");
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     animation: zoomInOut 100s infinite;
@@ -13801,4 +13801,8 @@ div[modal-backdrop] {
 
 button:hover {
     transform: scale(1.1); /* Scale the button up to 110% */
+}
+
+.entry-panel {
+    width: 600px;
 }
