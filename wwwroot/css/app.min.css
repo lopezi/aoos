@@ -1149,6 +1149,11 @@ input:checked + .toggle-bg {
   margin-right: auto;
 }
 
+.mx-48 {
+  margin-left: 12rem;
+  margin-right: 12rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
