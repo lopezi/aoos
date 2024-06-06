@@ -18,6 +18,8 @@ namespace FlowbiteBlazorWasmStarter.Pages
         private string inputName { get; set; } = string.Empty;
         private string tokenName { get; set; } = string.Empty;
         private string tokenTicker { get; set; } = string.Empty;
+
+        private MemValues MemValues { get; set; } = new MemValues();
         public void Step(int step)
         {
             _step = step;
@@ -28,7 +30,9 @@ namespace FlowbiteBlazorWasmStarter.Pages
             _jwk = await ArweaveService.GenerateWallet();
             _address = await ArweaveService.GetAddress(_jwk);
 
+
             MemValues.Address = _address;
+            await StorageService.SaveMemValues(MemValues);
         }
 
         public async Task DownloadWallet()
@@ -114,6 +118,7 @@ namespace FlowbiteBlazorWasmStarter.Pages
             _tokenResult = _newTokenId;
 
             MemValues.Token = _newTokenId;
+            await StorageService.SaveMemValues(MemValues);
 
             _step = 4;
 

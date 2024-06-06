@@ -1,0 +1,47 @@
+name: Publish to Permaweb
+
+# Run workflow on every push to the master branch
+on:
+  push:
+
+jobs:
+  publish:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+      - name: "Set master version"
+        if: ${{ github.ref == 'refs/heads/master'}}
+        run: echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+        env:
+          APP_VERSION: $(git rev-parse --short "$GITHUB_SHA")
+      - name: "Set branch version"
+        if: ${{ github.ref != 'refs/heads/master'}}
+        run: echo "APP_VERSION=$APP_VERSION" >> $GITHUB_ENV
+        env:
+          APP_VERSION: ${{ env.GITHUB_REF_SLUG }}-$(git rev-parse --short "$GITHUB_SHA")
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 8.0.x
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.x'  # specify your desired Node.js version
+      - name: Install npm dependencies
+        run: npm install
+      - name: Build CSS with Tailwind
+        run: npx tailwindcss -i wwwroot/css/app.css -o wwwroot/css/app.min.css --watch &
+      - name: Build with dotnet
+        run: dotnet build . --configuration Release
+      - name: Publish Website
+        run: dotnet publish . -o publish/aoos -c Release --version-suffix ${{ env.APP_VERSION }}
+      - name: upload the directory
+        uses: outlierventures/arweave-bundler@v0.3.2
+        with:
+          command: upload
+          directory: publish/aoos/wwwroot/
+          private-key: ${{secrets.ARWEAVE_PRIVATE_KEY}}
+          network: arweave.net
