@@ -3,8 +3,14 @@
 @using ArweaveAO.Models.Token
 @using Microsoft.Extensions.Options
 @inject HttpClient httpClient
-<div>
-    @TokenData?.Name | @BalanceHelper.FormatBalance(Balance?.Balance, TokenData?.Denomination ?? 0)
+
+<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+  <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+    @TokenData?.Name
+  </span>
+  <span class="bg-gray-100 text-gray-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
+    @BalanceHelper.FormatBalance(Balance?.Balance, TokenData?.Denomination ?? 0)
+  </span>
 </div>
 
 @code{
