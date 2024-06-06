@@ -1,28 +1,14 @@
 ﻿@page "/"
-@inject ArweaveService ArweaveService
 
 <PageTitle>Home</PageTitle>
-@if (_step == 0)
-{
 
-    <h1 class="text-4xl font-bold">Welcome to ao</h1>
+<h1 class="text-4xl font-bold">Hello, world!</h1>
 
-    <p>The hyper parallel computer running on Arweave.</p>
-
-    <p>Are you ready for an adventure?</p>
-
-    <button @onclick="() => Step(1)">Follow the white rabbit</button>
-
-}
-
-@if (_step == 1)
-{
-    <button @onclick="GenerateWallet">Generate a wallet</button>
-
-    @if (!string.IsNullOrEmpty(_jwk))
-    {
-        <p>Wallet created</p>
-        <p>Address: @_address</p>
-        <button @onclick="DownloadWallet">Backup your wallet</button>
-    }
-}
+<div class="text-xl">Welcome to your new app.</div>
+<div class="mt-5">This is a starter template for Blazor WebAssembly that uses
+    <a href="https://tailwindcss.com/" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Tailwind
+        CSS</a> and <a href="https://flowbite.com/"
+        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Flowbite</a> UI
+    library for
+    styling.
+</div>
