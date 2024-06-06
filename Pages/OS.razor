@@ -1,5 +1,6 @@
 ﻿@page "/os"
 @layout OsLayout
+@inject StorageService StorageService
 
 
 <PageTitle>ao OS</PageTitle>
@@ -30,7 +31,7 @@
            </div>
            <!-- AOWW Modal body -->
            <div class="iframe-container">
-               <iframe src="https://aoww.net/wallet/@MemValues.Address"></iframe>
+               <iframe src="https://aoww.net/wallet/@memValues?.Address"></iframe>
            </div>
        </div>
     </div>
@@ -200,5 +201,12 @@
 
 
 @code {
+    private MemValues? memValues = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        memValues = await StorageService.GetMemValues();
+        await  base.OnInitializedAsync();
+    }
 
 }
