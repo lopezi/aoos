@@ -1,6 +1,6 @@
 ﻿using ArweaveBlazor;
 
-namespace aoos.Pages
+namespace FlowbiteBlazorWasmStarter.Pages
 {
     public partial class Home
     {
@@ -27,6 +27,19 @@ namespace aoos.Pages
             }
 
             var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
+
+            _step = 2;
+        }
+
+        public async Task TalkToMorpheus()
+        {
+            if (_jwk == null)
+            {
+                return;
+            }
+
+            var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
+
         }
     }
 }
