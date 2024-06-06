@@ -11,6 +11,8 @@ namespace FlowbiteBlazorWasmStarter.Pages
         string? _resultMsg = null;
         string? _tokenResult = null;
 
+        string morpheus = "-xmOkXs3b6vMnQmdMw4tasHVZwG3_d7kEiUJa9lp8_w";
+        private string inputName { get; set; } = string.Empty;
         public void Step(int step)
         {
             _step = step;
@@ -41,8 +43,11 @@ namespace FlowbiteBlazorWasmStarter.Pages
                 return;
             }
 
-            //TODO: Send to process
-            _resultId = "TODO";
+            _resultId = await ArweaveService.SendAsync(_jwk, morpheus, null, null, new List<ArweaveBlazor.Models.Tag>
+            {
+                new ArweaveBlazor.Models.Tag { Name = "Action", Value = "talk"},
+                new ArweaveBlazor.Models.Tag { Name = "Name", Value = inputName},
+            });
 
         }
 
@@ -56,7 +61,7 @@ namespace FlowbiteBlazorWasmStarter.Pages
             //TODO: Send to process
             _step = 3;
 
-            _resultMsg = "TODO";
+            _resultMsg = await ArweaveService.GetResultAsync<string>(morpheus, _resultId);
 
         }
 
