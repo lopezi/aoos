@@ -3,6 +3,8 @@ name: Publish to Permaweb
 # Run workflow on every push to the master branch
 on:
   push:
+    branches:
+      - permaweb
 
 jobs:
   publish:
