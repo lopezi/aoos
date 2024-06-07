@@ -53,7 +53,7 @@ namespace FlowbiteBlazorWasmStarter.Pages
 
             var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
 
-            await Task.Delay(TimeSpan.FromSeconds(2));
+            await Task.Delay(TimeSpan.FromSeconds(1));
             _step = 2;
         }
 
