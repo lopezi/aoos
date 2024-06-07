@@ -14,6 +14,11 @@ namespace FlowbiteBlazorWasmStarter.Pages
         string? _newTokenId = null;
         string? _tokenResult = null;
 
+        bool isWalletGeneratingBusy = false;
+        bool isSendBusy = false;
+        bool isResultBusy = false;
+        bool isTokenBusy = false;
+
         string morpheus = "-xmOkXs3b6vMnQmdMw4tasHVZwG3_d7kEiUJa9lp8_w";
         private string inputName { get; set; } = string.Empty;
         private string tokenName { get; set; } = string.Empty;
@@ -27,8 +32,12 @@ namespace FlowbiteBlazorWasmStarter.Pages
 
         public async Task GenerateWallet()
         {
+            isWalletGeneratingBusy = true;
+
             _jwk = await ArweaveService.GenerateWallet();
             _address = await ArweaveService.GetAddress(_jwk);
+
+            isWalletGeneratingBusy = false;
 
 
             MemValues.Address = _address;
@@ -44,6 +53,7 @@ namespace FlowbiteBlazorWasmStarter.Pages
 
             var result = await ArweaveService.SaveFile($"{_address}.json", _jwk);
 
+            await Task.Delay(TimeSpan.FromSeconds(1));
             _step = 2;
         }
 
@@ -54,11 +64,15 @@ namespace FlowbiteBlazorWasmStarter.Pages
                 return;
             }
 
+            isSendBusy = true;
+
             _resultId = await ArweaveService.SendAsync(_jwk, morpheus, null, null, new List<ArweaveBlazor.Models.Tag>
             {
                 new ArweaveBlazor.Models.Tag { Name = "Action", Value = "talk"},
                 new ArweaveBlazor.Models.Tag { Name = "Name", Value = inputName},
             });
+
+            isSendBusy = false;
 
         }
 
@@ -72,7 +86,10 @@ namespace FlowbiteBlazorWasmStarter.Pages
             //TODO: Send to process
             _step = 3;
 
+            isResultBusy = true;
             _resultMsg = await ArweaveService.GetResultAsync<string>(morpheus, _resultId);
+
+            isResultBusy = false;
 
         }
 
@@ -82,6 +99,8 @@ namespace FlowbiteBlazorWasmStarter.Pages
             {
                 return;
             }
+
+            isTokenBusy = true;
 
             //string data = "local bint = require('.bint')(256)\r\nlocal ao = require('ao')\r\nlocal json = require('json')\r\n\r\nHandlers.add('talk', Handlers.utils.hasMatchingTag('Action', 'talk'),\r\n  function(msg) \r\n    \r\n    ao.send({ Target = msg.From, Data = \"Hi \" .. msg.Tags.Name .. \", are you The One? Can you create a token for me?\"}) \r\nend)";
             string data = EmbeddedResourceReader.ReadResource("FlowbiteBlazorWasmStarter.token.txt");
@@ -120,6 +139,7 @@ namespace FlowbiteBlazorWasmStarter.Pages
             MemValues.Token = _newTokenId;
             await StorageService.SaveMemValues(MemValues);
 
+            isTokenBusy = false;
             _step = 4;
 
         }
