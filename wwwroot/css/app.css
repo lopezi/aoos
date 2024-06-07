@@ -13759,11 +13759,14 @@ body {
 
 
 body {
+    width: 100%;
+    height: 100%;
     background-image: url("/images/wallpaper.webp");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     animation: zoomInOut 100s infinite;
+    background-attachment:fixed;
 }
 
 
