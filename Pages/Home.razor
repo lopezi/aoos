@@ -87,12 +87,16 @@
             <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Let's get you started</h1>
             <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Your brand new wallet is cooking hot</p>
             <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                @if (string.IsNullOrEmpty(_jwk))
+                @if (string.IsNullOrEmpty(_jwk) && !isWalletGeneratingBusy)
                     {
                         <a href="#" @onclick="GenerateWallet" class="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">
                             Generate a wallet
                         </a>
                  }
+                @if (isWalletGeneratingBusy)
+                {
+                    <p>Generating wallet...</p>
+                }
                 @if (!string.IsNullOrEmpty(_jwk))
                     {
                         <div class="flex flex-col justify-center items-center">
@@ -172,7 +176,7 @@
                 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Better call Morpheus</h1>
                 <p class="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">It’s easy to communicate with processes running on ao</p>
                 <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
-                    @if (_resultId == null)
+                @if (_resultId == null && !isSendBusy)
                         {
                             <div class="flex flex-col justify-center items-center">
                                 <input @bind="inputName" type="text" id="first_name" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Tell your nickname" required />
@@ -184,6 +188,10 @@
                             </div>
 
                      }
+                @if (isSendBusy)
+                {
+                    <p>Sending message...</p>
+                }
                      @if (_resultId != null)
                         {
                         <div class="flex flex-col justify-center items-center">
@@ -214,23 +222,23 @@
                 <div class="flex flex-col space-y-4 sm:flex-row sm:justify-center sm:space-y-0">
                      @if(_resultMsg != null)
                         {
-                        @if(_tokenResult == null)
-                                                    {
+                    @if (_tokenResult == null && !isTokenBusy)
+                    {
+                        <div class="flex flex-col justify-center items-center">
+                            <p>Create a token:</p>
+                            <input @bind="tokenName" type="text" id="token_name" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Token name" required />
+                            <input @bind="tokenTicker" type="text" id="ticker" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ticker name" required />
 
+                            <p>Press the button to create your own token. Just like that.</p>
+                            <button @onclick="CreateToken" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Create my token</button>
+                        </div>
+                    }
+                    @if (isTokenBusy)
+                    {
+                        <p>Creating token: @tokenName ...</p>
+                    }
 
-                            <div class="flex flex-col justify-center items-center">
-                                <p>Create a token:</p>
-                                <input @bind="tokenName" type="text" id="token_name" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Token name" required />
-                                <input @bind="tokenTicker" type="text" id="ticker" class="mb-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Ticker name" required />
-
-                                <p>Press the button to create your own token. Just like that.</p>
-                                <button @onclick="CreateToken" class="mt-4 inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-900">Create my token</button>
-                            </div>
-                            }
-
-
-
-                        }
+            }
                 </div>
             </div>
 
